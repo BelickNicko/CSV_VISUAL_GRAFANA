@@ -1,0 +1,21 @@
+tables:
+  sales:
+    id: Int32
+    Date: Date
+    Sales: Float64
+  sentimentdataset:
+    Unnamed: Int32
+    Text: String
+    Sentimen: String
+    Timestamp: DateTime
+    User: String
+    Platform: String
+    Hashtags: String
+    Retweets: Int32
+    Likes: Int32
+    Country: String
+    Year: Int32
+    Month: Int32
+    Day: Int32
+    Hour: Int32
+
