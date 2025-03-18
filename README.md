@@ -17,3 +17,7 @@ docker-compose up -d
 ```
 
 4. After that, click on the link to the GRAFANA web data visualization interface: http://localhost:3112
+5. Then, you'd create data source. 
+![image info](readme_data/data_source_creating.jpg)
+6. After that, you can create a visualization using clickhouse dialect.
+![image info](readme_data/graph_example.png)
