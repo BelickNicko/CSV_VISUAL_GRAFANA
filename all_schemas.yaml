@@ -3,6 +3,10 @@ tables:
     id: Int32
     Date: Date
     Sales: Float64
+  sales_excel:
+    id: Int32
+    Date: Date
+    Sales: Float64
   sentimentdataset:
     Unnamed: Int32
     Text: String

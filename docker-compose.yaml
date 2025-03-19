@@ -20,7 +20,7 @@ services:
     container_name: data-loader
     command: bash -c "sleep 15 && python3 data_loader.py"
     environment:
-      CSV_DIR: /csv_data
+      DATASETS_DIR: /csv_data
       CLICKHOUSE_HOST: clickhouse
       CLICKHOUSE_PORT: 9000
       CLICKHOUSE_USER: ${CLICKHOUSE_USER}

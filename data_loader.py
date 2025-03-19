@@ -10,7 +10,7 @@ CLICKHOUSE_USER = os.getenv("CLICKHOUSE_USER")
 CLICKHOUSE_PASSWORD = os.getenv("CLICKHOUSE_PASSWORD")
 CLICKHOUSE_DB = os.getenv("CLICKHOUSE_DB")
 
-CSV_DIR = os.getenv("CSV_DIR")
+DATASETS_DIR = os.getenv("DATASETS_DIR")
 YAML_FILE = "all_schemas.yaml"
 client = Client(
     host=CLICKHOUSE_HOST,
@@ -28,8 +28,10 @@ def load_yaml_config(file_path):
 
 def create_table(table_name, columns, file_path):
     """Создание таблицы в ClickHouse."""
-    df = pd.read_csv(file_path)
-
+    if file_path.endswith(".csv"):
+        df = pd.read_csv(file_path)
+    else: 
+        df = pd.read_excel(file_path)
     columns_sql = ", ".join(
         [
             f"{column} {columns[column]}" if column in columns else f"position_{i} String"
@@ -84,7 +86,10 @@ def process_csv(file_path, table_name, columns):
     """Обработка CSV-файла и загрузка данных в ClickHouse."""
     print(f"Обработка файла: {file_path}, таблица: {table_name}")
 
-    df = pd.read_csv(file_path)
+    if file_path.endswith(".csv"):
+        df = pd.read_csv(file_path)
+    else: 
+        df = pd.read_excel(file_path)
     data = []
     for row in df.itertuples(index=False, name=None):
         processed_row = [
@@ -113,12 +118,12 @@ def process_csv(file_path, table_name, columns):
 def main():
     config = load_yaml_config(YAML_FILE)
 
-    for file_name in os.listdir(CSV_DIR):
-        if file_name.endswith(".csv"):
+    for file_name in os.listdir(DATASETS_DIR):
+        if file_name.endswith(".csv") or file_name.endswith(".xlsx"):
             table_name = os.path.splitext(file_name)[0]
             if table_name in config["tables"]:
                 file_path = os.path.join(
-                    CSV_DIR,
+                    DATASETS_DIR,
                     file_name,
                 )
                 create_table(table_name, config["tables"][table_name], file_path)
