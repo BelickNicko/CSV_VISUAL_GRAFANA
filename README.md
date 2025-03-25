@@ -5,9 +5,8 @@ If you have a csv or excel file and you need to visualize and examine your data,
 What do you need to do to get started? 
 1. Transfer your file to the datasets folder
 2. Enter the names of your columns and the type of data corresponding to them in the configuration file. 
-Moreover, if it is not specified in the configuration file, it will be named as position_i (where i is the column number), and the data type will be defined as String. 
+Moreover, if it is not specified in the configuration file, it will be named as position_i (where i is the column number), and the data type will be defined as String. Example: 
 
-Example: 
 ![image info](readme_data/example_yaml.jpg)
 
 3. After that, you need to run Docker Compose
